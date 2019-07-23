@@ -3,25 +3,27 @@ extends KinematicBody2D
 var gravity = 1000
 var speed = 20000
 var jump_speed = 500
+var direction = Vector2()
 var motion = Vector2()
 var landed = false
 var attack_impulse = false
 var attack_speed = 100000
 
 func _ready():
+	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
 
 func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		$Sprite.scale.x = -2
-		motion.x = -1
+		direction.x = -1
 	elif Input.is_action_pressed("move_right"):
 		$Sprite.scale.x = 2
-		motion.x = 1
+		direction.x = 1
 	else:
-		motion.x = 0
+		direction.x = 0
 
-	motion.x = motion.x * speed * delta
+	motion.x = direction.x * speed * delta
 
 	if is_on_floor():
 		if !landed:
@@ -31,7 +33,7 @@ func _physics_process(delta):
 		motion.y = 10
 		
 		if $Sprite/AnimationPlayer.current_animation != "GroundAttack":
-			if motion.x != 0:
+			if direction.x != 0:
 				$Sprite/AnimationPlayer.play("Run")
 			else:
 				$Sprite/AnimationPlayer.play("Idle")
@@ -71,4 +73,7 @@ func play_audio(audio_node):
 
 func _on_HitArea_body_entered(body):
 	if body is Enemy:
-		body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
+		if body.lives > 0:
+			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
+		elif body.lives == 0:
+			body.get_node("AnimationTree").get("parameters/playback").travel("Die")

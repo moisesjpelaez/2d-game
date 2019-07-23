@@ -16,10 +16,9 @@ extents = Vector2( 464.245, 25.5852 )
 [node name="Game" type="Node2D"]
 
 [node name="Enemies" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( 759.815, 481.973 )
+position = Vector2( 770.886, 392.206 )
 
 [node name="Collisions" type="Node2D" parent="."]
 editor/display_folded = true
