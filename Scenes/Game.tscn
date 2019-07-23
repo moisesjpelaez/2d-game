@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/Layer_0001_8.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/GameParallax.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SFX/ForestCricket.ogg" type="AudioStream" id=5]
+[ext_resource path="res://SFX/ForestBirds.ogg" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.7675, 483.413 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 464.245, 25.5852 )
+
+[node name="Game" type="Node2D"]
+
+[node name="Enemies" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( 759.815, 481.973 )
+
+[node name="Collisions" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="WallLeft" type="StaticBody2D" parent="Collisions"]
+editor/display_folded = true
+position = Vector2( -875, 90 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/WallLeft"]
+shape = SubResource( 1 )
+
+[node name="WallRight" type="StaticBody2D" parent="Collisions"]
+editor/display_folded = true
+position = Vector2( 1895, 90 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/WallRight"]
+shape = SubResource( 1 )
+
+[node name="Ground" type="StaticBody2D" parent="Collisions"]
+editor/display_folded = true
+
+[node name="Sprite" type="Sprite" parent="Collisions/Ground"]
+visible = false
+position = Vector2( 512, 180 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Ground"]
+position = Vector2( 512, 545 )
+shape = SubResource( 2 )
+
+[node name="Ground2" type="StaticBody2D" parent="Collisions"]
+editor/display_folded = true
+position = Vector2( 920, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Collisions/Ground2"]
+visible = false
+position = Vector2( 512, 180 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Ground2"]
+position = Vector2( 512, 545 )
+shape = SubResource( 2 )
+
+[node name="Ground3" type="StaticBody2D" parent="Collisions"]
+editor/display_folded = true
+position = Vector2( -920, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Collisions/Ground3"]
+visible = false
+position = Vector2( 512, 180 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Ground3"]
+position = Vector2( 512, 545 )
+shape = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 288 )
+
+[node name="GameParallax" parent="." instance=ExtResource( 4 )]
+
+[node name="CricketSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="BirdsSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true

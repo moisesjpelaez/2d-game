@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ForestBirds.ogg-eafe070b1f5da662b633d7a7b11ba22e.oggstr"
+
+[deps]
+
+source_file="res://SFX/ForestBirds.ogg"
+dest_files=[ "res://.import/ForestBirds.ogg-eafe070b1f5da662b633d7a7b11ba22e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Walk.ogg-1900184f2400c5072e614298aecf4d54.oggstr"
+
+[deps]
+
+source_file="res://SFX/Walk.ogg"
+dest_files=[ "res://.import/Walk.ogg-1900184f2400c5072e614298aecf4d54.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
