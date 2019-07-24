@@ -27,9 +27,10 @@ func _physics_process(delta):
 	if follow_player:
 		reset_timer = false
 
-		if abs(global_position.x - Global.player.global_position.x) < attack_distance:
-			direction.x = 0
+		if !$AnimationTree.get("parameters/playback").get_current_node() == "Attack":
+			flip_direction(global_position.x > Global.player.global_position.x)
 
+		if abs(global_position.x - Global.player.global_position.x) < attack_distance:
 			if !attack_player:
 				attack_player = true
 				$AttackTimer.start()
@@ -37,19 +38,12 @@ func _physics_process(delta):
 				$AnimationTree.set("parameters/conditions/idle", true)
 				$AnimationTree.set("parameters/conditions/walk", false)
 				$AnimationTree.set("parameters/conditions/attack", false)
+			
+			direction.x = 0
 		else:
 			$AnimationTree.set("parameters/conditions/idle", false)
 			$AnimationTree.set("parameters/conditions/walk", true)
 			$AnimationTree.set("parameters/conditions/attack", false)
-
-			if global_position.x < Global.player.global_position.x:
-				$Sprite.scale.x = 2
-				direction.x = 1
-			elif global_position.x > Global.player.global_position.x:
-				$Sprite.scale.x = -2
-				direction.x = -1
-			else:
-				direction.x = 0
 	else:
 		if !reset_timer:
 			reset_timer = true
@@ -58,6 +52,9 @@ func _physics_process(delta):
 			$AnimationTree.set("parameters/conditions/attack", false)
 			direction.x = 0
 			$IdleTimer.start()
+	
+	if $AnimationTree.get("parameters/playback").get_current_node() == "Attack":
+		direction.x = 0
 
 	if !$CollisionShape2D.disabled:
 		motion.x = direction.x * speed * delta
@@ -74,6 +71,14 @@ func get_damage():
 func die():
 	queue_free()
 
+func flip_direction(flip):
+	if flip:
+		$Sprite.scale.x = -2
+		direction.x = -1
+	else:
+		$Sprite.scale.x = 2
+		direction.x = 1
+
 func _on_IdleTimer_timeout():
 	if lives != 0 && !follow_player:
 		$WalkTimer.start()
@@ -82,12 +87,7 @@ func _on_IdleTimer_timeout():
 		$AnimationTree.set("parameters/conditions/attack", false)
 		flip_direction = !flip_direction
 
-		if flip_direction:
-			$Sprite.scale.x = -2
-			direction.x = -1
-		else:
-			$Sprite.scale.x = 2
-			direction.x = 1
+		flip_direction(flip_direction)
 
 func _on_WalkTimer_timeout():
 	if lives != 0 && !follow_player:

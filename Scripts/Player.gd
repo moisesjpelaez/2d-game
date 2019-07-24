@@ -73,11 +73,12 @@ func play_audio(audio_node):
 	get_node(audio_node).play()
 
 func _on_HitArea_body_entered(body):
-	if body is Enemy:
-		if body.lives > 0:
-			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
-		elif body.lives == 0:
-			body.get_node("AnimationTree").get("parameters/playback").travel("Die")
+	pass
+	# if body is Enemy:
+	# 	if body.lives > 0:
+	# 		body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
+	# 	elif body.lives == 0:
+	# 		body.get_node("AnimationTree").get("parameters/playback").travel("Die")
 
 func get_damage():
 	$Hit.play()
