@@ -9,12 +9,17 @@ var motion = Vector2()
 var landed = false
 var attack_impulse = false
 var attack_speed = 100000
+var lives = 3
+export var hit = false
 
 func _ready():
 	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
 
 func _physics_process(delta):
+	if hit:
+		return
+
 	if Input.is_action_pressed("move_left"):
 		$Sprite.scale.x = -2
 		direction.x = -1
@@ -69,11 +74,10 @@ func attack_motion():
 	attack_impulse = true
 
 func play_audio(audio_node):
-	print(audio_node)
 	get_node(audio_node).play()
 
 func _on_HitArea_body_entered(body):
-	if body is Enemy:
+	if body.lives != null:
 		if body.lives > 0:
 			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
 		elif body.lives == 0:
@@ -81,3 +85,6 @@ func _on_HitArea_body_entered(body):
 
 func get_damage():
 	$Hit.play()
+
+	if lives > 0:
+		lives -= 1

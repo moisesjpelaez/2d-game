@@ -105,4 +105,8 @@ func _on_AttackTimer_timeout():
 
 func _on_HitArea_body_entered(body):
 	if body is Player:
-		body.get_damage()
+		body.hit = true
+		if body.lives > 0:
+			body.get_node("Sprite/AnimationPlayer").play("Hit")
+		elif body.lives == 0:
+			body.get_node("Sprite/AnimationPlayer").play("Die")
