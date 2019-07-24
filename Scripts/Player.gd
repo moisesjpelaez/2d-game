@@ -9,7 +9,6 @@ var motion = Vector2()
 var landed = false
 var attack_impulse = false
 var attack_speed = 100000
-var lives = 3
 export var hit = false
 
 func _ready():
@@ -20,6 +19,19 @@ func _physics_process(delta):
 	if hit:
 		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
 		return
+	
+	if !Global.game_started:
+		if is_on_floor():
+			if !landed:
+				landed = true
+				$Land.play()
+	
+			motion.y = 10
+
+		motion.x = 0
+		motion.y += gravity * delta
+		move_and_slide(motion, Vector2(0, -1))
+		return
 
 	if Input.is_action_pressed("move_left"):
 		$Sprite.scale.x = -2
@@ -29,7 +41,7 @@ func _physics_process(delta):
 		direction.x = 1
 	else:
 		direction.x = 0
-
+	
 	motion.x = direction.x * speed * delta
 
 	if is_on_floor():
@@ -87,7 +99,8 @@ func _on_HitArea_body_entered(body):
 func get_damage():
 	$Hit.play()
 
-	if lives > 0:
-		lives -= 1
+	if Global.player_lives > 0:
+		Global.ui_health.get_child(Global.player_lives).texture = Global.heart_texture
+		Global.player_lives -= 1
 	else:
-		Global.game_over = true
+		Global.game_over()

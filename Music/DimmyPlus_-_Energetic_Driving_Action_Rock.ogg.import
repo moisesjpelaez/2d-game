@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DimmyPlus_-_Energetic_Driving_Action_Rock.ogg-fd6591e50d17a7a5a1873345fd92a4f3.oggstr"
+
+[deps]
+
+source_file="res://Music/DimmyPlus_-_Energetic_Driving_Action_Rock.ogg"
+dest_files=[ "res://.import/DimmyPlus_-_Energetic_Driving_Action_Rock.ogg-fd6591e50d17a7a5a1873345fd92a4f3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

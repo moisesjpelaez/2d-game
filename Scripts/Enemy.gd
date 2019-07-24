@@ -23,7 +23,7 @@ func _ready():
 	$IdleTimer.start()
 
 func _physics_process(delta):
-	follow_player = abs(global_position.x - Global.player.global_position.x) < detection_distance && !Global.game_over
+	follow_player = abs(global_position.x - Global.player.global_position.x) < detection_distance && !Global.game_is_over
 
 	if follow_player:
 		reset_timer = false
@@ -74,7 +74,7 @@ func _physics_process(delta):
 		motion.y += gravity * delta
 		move_and_slide(motion, Vector2(0, -1))
 
-	if Global.game_over:
+	if Global.game_is_over:
 		if reset_timer:
 			return
 		
@@ -128,7 +128,7 @@ func _on_AttackTimer_timeout():
 func _on_HitArea_body_entered(body):
 	if body is Player:
 		body.hit = true
-		if body.lives > 0:
+		if Global.player_lives > 0:
 			body.get_node("Sprite/AnimationPlayer").play("Hit")
-		elif body.lives == 0:
+		elif Global.player_lives == 0:
 			body.get_node("Sprite/AnimationPlayer").play("Die")

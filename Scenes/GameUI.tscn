@@ -1,0 +1,322 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/GameUI.gd" type="Script" id=1]
+[ext_resource path="res://Art/background.png" type="Texture" id=2]
+[ext_resource path="res://Art/heart.png" type="Texture" id=3]
+[ext_resource path="res://Music/DimmyPlus_-_Energetic_Driving_Action_Rock.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Music/Hands_of_Attrition_-_They_Come_At_Night.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Music/ROBOTS_-_Power_Energetic_Sport_Action_Rock.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Music/Rage-Zone_-_HI-FI.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=9]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/Kenney Pixel.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+Heart = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Health" type="HBoxContainer" parent="Control"]
+margin_left = 33.5136
+margin_top = 30.22
+margin_right = 176.514
+margin_bottom = 71.22
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/Health"]
+margin_right = 41.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Health"]
+margin_left = 51.0
+margin_right = 92.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Health"]
+margin_left = 102.0
+margin_right = 143.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "Press any button to start"
+align = 1
+valign = 1
+
+[node name="RestartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 4 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music1"]
+anims/FadeIn = SubResource( 3 )
+anims/FadeOut = SubResource( 4 )
+
+[node name="Music2" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 5 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music2"]
+anims/FadeIn = SubResource( 5 )
+anims/FadeOut = SubResource( 6 )
+
+[node name="Music3" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 6 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music3"]
+anims/FadeIn = SubResource( 7 )
+anims/FadeOut = SubResource( 8 )
+
+[node name="Music4" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 7 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music4"]
+anims/FadeIn = SubResource( 9 )
+anims/FadeOut = SubResource( 10 )
+
+[node name="Music5" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 8 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music5"]
+anims/FadeIn = SubResource( 11 )
+anims/FadeOut = SubResource( 12 )
+
+[node name="Music6" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 9 )
+volume_db = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music6"]
+anims/FadeIn = SubResource( 13 )
+anims/FadeOut = SubResource( 14 )
