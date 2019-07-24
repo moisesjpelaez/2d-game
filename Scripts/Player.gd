@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 var gravity = 1000
 var speed = 20000
@@ -77,3 +78,6 @@ func _on_HitArea_body_entered(body):
 			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
 		elif body.lives == 0:
 			body.get_node("AnimationTree").get("parameters/playback").travel("Die")
+
+func get_damage():
+	$Hit.play()
