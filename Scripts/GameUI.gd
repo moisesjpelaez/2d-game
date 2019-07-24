@@ -31,4 +31,3 @@ func change_music():
 	randomize()
 	Global.game_music = get_node("Music" + str(randi() % 6 + 1))
 	Global.game_music.play()
-
