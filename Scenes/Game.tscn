@@ -120,7 +120,7 @@ shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 288 )
-hit = null
+hit = false
 
 [node name="GameParallax" parent="." instance=ExtResource( 4 )]
 

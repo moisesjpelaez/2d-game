@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Art/Skeleton Idle.png" type="Texture" id=2]
@@ -332,94 +332,108 @@ animation = "Idle"
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeTimeScale" id=26]
+[sub_resource type="AnimationNodeTimeScale" id=14]
 
-[sub_resource type="AnimationNodeBlendTree" id=27]
+[sub_resource type="AnimationNodeBlendTree" id=15]
 graph_offset = Vector2( -106, 104 )
-nodes/Animation/node = SubResource( 25 )
+nodes/Animation/node = SubResource( 13 )
 nodes/Animation/position = Vector2( -60, 140 )
-nodes/TimeScale/node = SubResource( 26 )
+nodes/TimeScale/node = SubResource( 14 )
 nodes/TimeScale/position = Vector2( 140, 140 )
 nodes/output/position = Vector2( 360, 160 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
 advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-advance_condition = "idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
-advance_condition = "attack"
+advance_condition = "walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
+advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 switch_mode = 2
 advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+advance_condition = "attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+switch_mode = 2
+advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+advance_condition = "walk_fast"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+advance_condition = "walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 advance_condition = "walk_fast"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
-advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 advance_condition = "idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+advance_condition = "walk_fast"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+advance_condition = "walk_fast"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
-switch_mode = 2
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
 advance_condition = "attack"
 
-[sub_resource type="AnimationNodeStateMachine" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+advance_condition = "attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+switch_mode = 2
+advance_condition = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+advance_condition = "attack"
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
 states/Attack/node = SubResource( 8 )
-states/Attack/position = Vector2( 237, 169 )
+states/Attack/position = Vector2( 409, 149 )
 states/Die/node = SubResource( 9 )
-states/Die/position = Vector2( 21, 42 )
+states/Die/position = Vector2( -61, 59 )
 states/Hit/node = SubResource( 10 )
-states/Hit/position = Vector2( 543, -71 )
+states/Hit/position = Vector2( 483, -18 )
 states/Idle/node = SubResource( 11 )
-states/Idle/position = Vector2( 237, 42 )
+states/Idle/position = Vector2( 66, 149 )
 states/Walk/node = SubResource( 12 )
-states/Walk/position = Vector2( 237, -144 )
-states/WalkFast/node = SubResource( 27 )
-states/WalkFast/position = Vector2( -20, -71 )
-transitions = [ "Walk", "Hit", SubResource( 17 ), "Walk", "Die", SubResource( 18 ), "Hit", "Walk", SubResource( 20 ), "Idle", "Hit", SubResource( 13 ), "Idle", "Die", SubResource( 14 ), "Idle", "Walk", SubResource( 15 ), "Walk", "Idle", SubResource( 16 ), "Hit", "Idle", SubResource( 19 ), "Idle", "Attack", SubResource( 21 ), "Attack", "Idle", SubResource( 22 ), "Walk", "WalkFast", SubResource( 28 ), "WalkFast", "Walk", SubResource( 29 ), "Idle", "WalkFast", SubResource( 30 ), "WalkFast", "Idle", SubResource( 31 ), "WalkFast", "Hit", SubResource( 32 ), "Hit", "WalkFast", SubResource( 33 ), "Attack", "WalkFast", SubResource( 34 ), "WalkFast", "Attack", SubResource( 35 ) ]
+states/Walk/position = Vector2( 238, -134 )
+states/WalkFast/node = SubResource( 15 )
+states/WalkFast/position = Vector2( -3, -66 )
+transitions = [ "Walk", "Hit", SubResource( 16 ), "Walk", "Die", SubResource( 17 ), "Hit", "Walk", SubResource( 18 ), "Idle", "Hit", SubResource( 19 ), "Idle", "Die", SubResource( 20 ), "Idle", "Walk", SubResource( 21 ), "Walk", "Idle", SubResource( 22 ), "Hit", "Idle", SubResource( 23 ), "Idle", "Attack", SubResource( 24 ), "Attack", "Idle", SubResource( 25 ), "Walk", "WalkFast", SubResource( 26 ), "WalkFast", "Walk", SubResource( 27 ), "Idle", "WalkFast", SubResource( 28 ), "WalkFast", "Idle", SubResource( 29 ), "WalkFast", "Hit", SubResource( 30 ), "Hit", "WalkFast", SubResource( 31 ), "Attack", "WalkFast", SubResource( 32 ), "WalkFast", "Attack", SubResource( 33 ), "Attack", "Hit", SubResource( 36 ), "Hit", "Attack", SubResource( 37 ), "Attack", "Walk", SubResource( 38 ), "Walk", "Attack", SubResource( 39 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -186, -170 )
+graph_offset = Vector2( -123.98, -84 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemies",
+]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
@@ -429,7 +443,6 @@ editor/display_folded = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )
@@ -451,10 +464,10 @@ position = Vector2( -8.60365, 8.96213 )
 shape = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 23 )
+tree_root = SubResource( 34 )
 anim_player = NodePath("../Sprite/AnimationPlayer")
 active = true
-parameters/playback = SubResource( 24 )
+parameters/playback = SubResource( 35 )
 parameters/conditions/attack = false
 parameters/conditions/idle = false
 parameters/conditions/walk = false
