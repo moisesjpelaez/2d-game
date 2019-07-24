@@ -18,6 +18,7 @@ func _ready():
 
 func _physics_process(delta):
 	if hit:
+		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
 		return
 
 	if Input.is_action_pressed("move_left"):
@@ -77,7 +78,7 @@ func play_audio(audio_node):
 	get_node(audio_node).play()
 
 func _on_HitArea_body_entered(body):
-	if body.lives != null:
+	if body is Enemy:
 		if body.lives > 0:
 			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
 		elif body.lives == 0:
@@ -88,3 +89,5 @@ func get_damage():
 
 	if lives > 0:
 		lives -= 1
+	else:
+		Global.game_over = true

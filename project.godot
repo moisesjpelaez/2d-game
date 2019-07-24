@@ -62,6 +62,13 @@ attack={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Ground"
+2d_physics/layer_4="Wall"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
