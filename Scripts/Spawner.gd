@@ -25,4 +25,4 @@ func _on_Timer_timeout():
 func _on_Global_start_game():
 	randomize()
 	$Timer.wait_time = randf() * max_time + min_time
-	# $Timer.start()
+	$Timer.start()
