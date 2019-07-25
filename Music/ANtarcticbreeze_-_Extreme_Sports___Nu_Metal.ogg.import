@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg-91a9f56049a49df5fd27ad3c6fd21396.oggstr"
+
+[deps]
+
+source_file="res://Music/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg"
+dest_files=[ "res://.import/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg-91a9f56049a49df5fd27ad3c6fd21396.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
