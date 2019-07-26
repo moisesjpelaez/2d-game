@@ -3,6 +3,8 @@ extends CanvasLayer
 export (Texture) var Heart
 var total_music = 5
 
+# var debug_music = 6
+
 func _ready():
 	Global.game_label = $Control/Label
 	Global.restart_timer = $RestartTimer
@@ -10,7 +12,8 @@ func _ready():
 	Global.heart_texture = Heart
 	randomize()
 	Global.game_music = get_node("Music" + str(randi() % total_music + 1))
-	
+	# Global.game_music = get_node("Music" + str(debug_music))
+
 	$Control/Health.hide()
 	$Control/Label.text = "press the spacebar to start\n press 'esc' to quit"
 	

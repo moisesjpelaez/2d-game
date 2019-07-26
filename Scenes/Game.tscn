@@ -24,25 +24,22 @@ editor/display_folded = true
 [node name="Spawner" parent="EnemySpawners" instance=ExtResource( 2 )]
 
 [node name="Spawner6" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( 561.202, 412.267 )
+position = Vector2( 724.842, 397.162 )
 
 [node name="Spawner7" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( 1234.64, 382.049 )
+position = Vector2( 1244.71, 384.567 )
 
 [node name="Spawner8" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( 1601.58, 351.83 )
+position = Vector2( 1626.76, 361.9 )
 
 [node name="Spawner2" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( 105.765, 403.633 )
-
-[node name="Spawner3" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( -448.962, 403.633 )
+position = Vector2( 221.571, 391.045 )
 
 [node name="Spawner4" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( -211.53, 334.562 )
+position = Vector2( -309.714, 400.018 )
 
 [node name="Spawner5" parent="EnemySpawners" instance=ExtResource( 2 )]
-position = Vector2( -695.027, 356.147 )
+position = Vector2( -667.334, 371.252 )
 
 [node name="Collisions" type="Node2D" parent="."]
 editor/display_folded = true

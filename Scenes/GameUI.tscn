@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://Art/background.png" type="Texture" id=2]
 [ext_resource path="res://Art/heart.png" type="Texture" id=3]
 [ext_resource path="res://Music/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Music/DimmyPlus_-_Energetic_Driving_Action_Rock.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Music/ROBOTS_-_Power_Energetic_Sport_Action_Rock.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Music/ROBOTS_-_Power_Energetic_Sport_Action_Rock.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Music/83Crutch_-_Energetic_Grunge.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/83Crutch_-_Action_Modern_Metal_6.ogg" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/Kenney Pixel.ttf"
@@ -176,6 +177,38 @@ tracks/0/keys = {
 "values": [ -10.0, -80.0 ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "FadeIn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 0,
+"values": [ -50.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, -80.0 ]
+}
+
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 1 )
 Heart = ExtResource( 2 )
@@ -278,3 +311,12 @@ volume_db = -5.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Music5"]
 anims/FadeIn = SubResource( 11 )
 anims/FadeOut = SubResource( 12 )
+
+[node name="Music6" type="AudioStreamPlayer" parent="."]
+editor/display_folded = true
+stream = ExtResource( 9 )
+volume_db = -5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music6"]
+anims/FadeIn = SubResource( 13 )
+anims/FadeOut = SubResource( 14 )
