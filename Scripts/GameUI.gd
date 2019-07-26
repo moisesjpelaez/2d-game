@@ -32,6 +32,5 @@ func _on_RestartTimer_timeout():
 	Global.show_restart()
 
 func change_music():
-	randomize()
 	Global.game_music = get_node("Music" + str(randi() % total_music + 1))
 	Global.game_music.play()
