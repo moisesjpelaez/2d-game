@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg-91a9
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

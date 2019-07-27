@@ -11,5 +11,5 @@ dest_files=[ "res://.import/83Crutch_-_Energetic_Grunge.ogg-929488e8e18cddcec87e
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

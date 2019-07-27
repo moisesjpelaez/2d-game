@@ -11,5 +11,5 @@ dest_files=[ "res://.import/83Crutch_-_Action_Modern_Metal_6.ogg-690c86986b1bbe4
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
