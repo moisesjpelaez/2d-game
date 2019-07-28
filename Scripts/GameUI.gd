@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 export (Texture) var Heart
-var total_music = 5
+var total_music = 7
 
 # var debug_music = 6
 

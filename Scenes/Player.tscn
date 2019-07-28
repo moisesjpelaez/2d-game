@@ -176,7 +176,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 length = 0.9
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -280,7 +279,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 59
+frame = 42
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "Idle"

@@ -427,7 +427,7 @@ states/WalkFast/node = SubResource( 15 )
 states/WalkFast/position = Vector2( -3, -66 )
 transitions = [ "Walk", "Hit", SubResource( 16 ), "Walk", "Die", SubResource( 17 ), "Hit", "Walk", SubResource( 18 ), "Idle", "Hit", SubResource( 19 ), "Idle", "Die", SubResource( 20 ), "Idle", "Walk", SubResource( 21 ), "Walk", "Idle", SubResource( 22 ), "Hit", "Idle", SubResource( 23 ), "Idle", "Attack", SubResource( 24 ), "Attack", "Idle", SubResource( 25 ), "Walk", "WalkFast", SubResource( 26 ), "WalkFast", "Walk", SubResource( 27 ), "Idle", "WalkFast", SubResource( 28 ), "WalkFast", "Idle", SubResource( 29 ), "WalkFast", "Hit", SubResource( 30 ), "Hit", "WalkFast", SubResource( 31 ), "Attack", "WalkFast", SubResource( 32 ), "WalkFast", "Attack", SubResource( 33 ), "Attack", "Hit", SubResource( 34 ), "Hit", "Attack", SubResource( 35 ), "Attack", "Walk", SubResource( 36 ), "Walk", "Attack", SubResource( 37 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -123.98, -84 )
+graph_offset = Vector2( -216.189, -121.576 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
@@ -443,7 +443,7 @@ editor/display_folded = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 1
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )

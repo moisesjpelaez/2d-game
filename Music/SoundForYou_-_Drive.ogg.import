@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SoundForYou_-_Drive.ogg-4cddba1f52490a925982879388d65470.oggstr"
+
+[deps]
+
+source_file="res://Music/SoundForYou_-_Drive.ogg"
+dest_files=[ "res://.import/SoundForYou_-_Drive.ogg-4cddba1f52490a925982879388d65470.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
