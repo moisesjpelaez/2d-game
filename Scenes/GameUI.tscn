@@ -1,15 +1,19 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://Art/background.png" type="Texture" id=2]
 [ext_resource path="res://Art/heart.png" type="Texture" id=3]
-[ext_resource path="res://Music/83Crutch_-_Action_Modern_Metal_6.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Music/83Crutch_-_Energetic_Grunge.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Music/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=8]
-[ext_resource path="res://Music/SoundForYou_-_Drive.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Music/T-Trider_-_Breakbeat_Racing.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/GameMusic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Music/83Crutch_-_Action_Modern_Metal_6.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Music/83Crutch_-_Energetic_Grunge.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Music/ANtarcticbreeze_-_ANtarcticbreeze_-_Total_Control.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Music/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/Alexandr_Bulgarov_-_Outgoing.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Music/MPMProducer_-_Energizer.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Music/SoundForYou_-_Drive.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Music/T-Trider_-_Breakbeat_Racing.ogg" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/Kenney Pixel.ttf"
@@ -18,233 +22,11 @@ font_path = "res://Fonts/Kenney Pixel.ttf"
 size = 30
 font_data = SubResource( 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=15]
-resource_name = "FadeIn"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 0.999999 ),
-"update": 0,
-"values": [ -50.0, -5.0 ]
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "FadeOut"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -10.0, -80.0 ]
-}
-
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 1 )
 Heart = ExtResource( 2 )
+total_music = 10
+debug_music = 10
 
 [node name="Control" type="Control" parent="."]
 editor/display_folded = true
@@ -300,65 +82,32 @@ valign = 1
 wait_time = 3.0
 one_shot = true
 
-[node name="Music1" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
-stream = ExtResource( 4 )
-volume_db = -5.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music1"]
-anims/FadeIn = SubResource( 3 )
-anims/FadeOut = SubResource( 4 )
-
-[node name="Music2" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic1" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 5 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music2"]
-anims/FadeIn = SubResource( 5 )
-anims/FadeOut = SubResource( 6 )
-
-[node name="Music3" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic2" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 6 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music3"]
-anims/FadeIn = SubResource( 7 )
-anims/FadeOut = SubResource( 8 )
-
-[node name="Music4" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic3" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 7 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music4"]
-anims/FadeIn = SubResource( 9 )
-anims/FadeOut = SubResource( 10 )
-
-[node name="Music5" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic4" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 8 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music5"]
-anims/FadeIn = SubResource( 11 )
-anims/FadeOut = SubResource( 12 )
-
-[node name="Music6" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic5" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 9 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music6"]
-anims/FadeIn = SubResource( 13 )
-anims/FadeOut = SubResource( 14 )
-
-[node name="Music7" type="AudioStreamPlayer" parent="."]
-editor/display_folded = true
+[node name="GameMusic6" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 10 )
-volume_db = -5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Music7"]
-anims/FadeIn = SubResource( 15 )
-anims/FadeOut = SubResource( 16 )
+[node name="GameMusic7" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 11 )
+
+[node name="GameMusic8" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 12 )
+
+[node name="GameMusic9" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 13 )
+
+[node name="GameMusic10" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 14 )

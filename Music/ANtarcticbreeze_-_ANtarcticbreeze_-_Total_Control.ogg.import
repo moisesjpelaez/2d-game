@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ANtarcticbreeze_-_ANtarcticbreeze_-_Total_Control.ogg-52eb072a2b5f6175b5d834d56307dedc.oggstr"
+
+[deps]
+
+source_file="res://Music/ANtarcticbreeze_-_ANtarcticbreeze_-_Total_Control.ogg"
+dest_files=[ "res://.import/ANtarcticbreeze_-_ANtarcticbreeze_-_Total_Control.ogg-52eb072a2b5f6175b5d834d56307dedc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

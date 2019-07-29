@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Alexandr_Bulgarov_-_Outgoing.ogg-ae47323f835a9547dec56beb3ea75391.oggstr"
+
+[deps]
+
+source_file="res://Music/Alexandr_Bulgarov_-_Outgoing.ogg"
+dest_files=[ "res://.import/Alexandr_Bulgarov_-_Outgoing.ogg-ae47323f835a9547dec56beb3ea75391.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

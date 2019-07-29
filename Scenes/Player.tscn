@@ -319,9 +319,12 @@ stream = ExtResource( 4 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = 5.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -5.0
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -5.0
