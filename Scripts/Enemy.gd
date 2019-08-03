@@ -23,6 +23,9 @@ func _ready():
 func _physics_process(delta):
 	var current_state = state_machine.get_current_node()
 		
+	if "Idle" in current_state:
+		hit = false
+
 	if abs(Global.player.global_position.x - global_position.x) > attack_distance:
 		flip_direction(global_position.x > Global.player.global_position.x)
 	else:
