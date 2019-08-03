@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Art/Skeleton Idle.png" type="Texture" id=2]
@@ -57,10 +57,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false, false, true ]
+"values": [ true, false, true ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("../Attack:playing")
@@ -141,16 +141,16 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionShape2D:disabled")
+tracks/5/path = NodePath("..:hit")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -210,12 +210,24 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "get_damage"
 } ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:hit")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -323,14 +335,21 @@ animation = "Attack"
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Hit"
+
+[sub_resource type="AnimationNodeTimeScale" id=41]
+
+[sub_resource type="AnimationNodeBlendTree" id=42]
+graph_offset = Vector2( -145, 20 )
+nodes/Animation/node = SubResource( 40 )
+nodes/Animation/position = Vector2( -80, 200 )
+nodes/TimeScale/node = SubResource( 41 )
+nodes/TimeScale/position = Vector2( 103, 202 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Walk"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Walk"
@@ -346,88 +365,39 @@ nodes/TimeScale/position = Vector2( 140, 140 )
 nodes/output/position = Vector2( 360, 160 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-switch_mode = 2
-advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-advance_condition = "walk"
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-advance_condition = "idle"
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
 switch_mode = 2
-advance_condition = "idle"
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-advance_condition = "attack"
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
 switch_mode = 2
-advance_condition = "idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-advance_condition = "idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-switch_mode = 2
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-switch_mode = 2
-advance_condition = "walk_fast"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-advance_condition = "attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-advance_condition = "attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-switch_mode = 2
-advance_condition = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-advance_condition = "attack"
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=38]
 states/Attack/node = SubResource( 8 )
-states/Attack/position = Vector2( 409, 149 )
+states/Attack/position = Vector2( 261, 149 )
 states/Die/node = SubResource( 9 )
-states/Die/position = Vector2( -61, 59 )
-states/Hit/node = SubResource( 10 )
-states/Hit/position = Vector2( 483, -18 )
+states/Die/position = Vector2( 66, 260 )
+states/Hit/node = SubResource( 42 )
+states/Hit/position = Vector2( -145.189, 149 )
 states/Idle/node = SubResource( 11 )
 states/Idle/position = Vector2( 66, 149 )
-states/Walk/node = SubResource( 12 )
-states/Walk/position = Vector2( 238, -134 )
-states/WalkFast/node = SubResource( 15 )
-states/WalkFast/position = Vector2( -3, -66 )
-transitions = [ "Walk", "Hit", SubResource( 16 ), "Walk", "Die", SubResource( 17 ), "Hit", "Walk", SubResource( 18 ), "Idle", "Hit", SubResource( 19 ), "Idle", "Die", SubResource( 20 ), "Idle", "Walk", SubResource( 21 ), "Walk", "Idle", SubResource( 22 ), "Hit", "Idle", SubResource( 23 ), "Idle", "Attack", SubResource( 24 ), "Attack", "Idle", SubResource( 25 ), "Walk", "WalkFast", SubResource( 26 ), "WalkFast", "Walk", SubResource( 27 ), "Idle", "WalkFast", SubResource( 28 ), "WalkFast", "Idle", SubResource( 29 ), "WalkFast", "Hit", SubResource( 30 ), "Hit", "WalkFast", SubResource( 31 ), "Attack", "WalkFast", SubResource( 32 ), "WalkFast", "Attack", SubResource( 33 ), "Attack", "Hit", SubResource( 34 ), "Hit", "Attack", SubResource( 35 ), "Attack", "Walk", SubResource( 36 ), "Walk", "Attack", SubResource( 37 ) ]
+states/Walk/node = SubResource( 15 )
+states/Walk/position = Vector2( 66, 9 )
+transitions = [ "Idle", "Die", SubResource( 20 ), "Idle", "Walk", SubResource( 43 ), "Idle", "Attack", SubResource( 44 ), "Attack", "Idle", SubResource( 46 ), "Walk", "Idle", SubResource( 48 ), "Idle", "Hit", SubResource( 49 ), "Hit", "Idle", SubResource( 50 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -216.189, -121.576 )
+end_node = "Die"
+graph_offset = Vector2( -276.189, -50.576 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
@@ -437,14 +407,13 @@ graph_offset = Vector2( -216.189, -121.576 )
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
-lives = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 editor/display_folded = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 2
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )
@@ -470,11 +439,8 @@ tree_root = SubResource( 38 )
 anim_player = NodePath("../Sprite/AnimationPlayer")
 active = true
 parameters/playback = SubResource( 39 )
-parameters/conditions/attack = false
-parameters/conditions/idle = false
-parameters/conditions/walk = false
-parameters/conditions/walk_fast = false
-parameters/WalkFast/TimeScale/scale = 3.0
+parameters/Hit/TimeScale/scale = 3.0
+parameters/Walk/TimeScale/scale = 1.0
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
