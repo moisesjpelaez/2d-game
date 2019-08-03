@@ -12,7 +12,7 @@ var heart_texture
 var can_restart = false
 var game_music
 
-var restart_text = "press the spacebar to try again\n press 'esc' to quit"
+var restart_text = "press the spacebar to try again"
 var game_over_text = "game over"
 
 signal start_game

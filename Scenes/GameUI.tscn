@@ -1,19 +1,16 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://Art/background.png" type="Texture" id=2]
 [ext_resource path="res://Art/heart.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/GameMusic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Music/83Crutch_-_Action_Modern_Metal_6.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Music/83Crutch_-_Energetic_Grunge.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Music/ANtarcticbreeze_-_ANtarcticbreeze_-_Total_Control.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Music/ANtarcticbreeze_-_Extreme_Sports___Nu_Metal.ogg" type="AudioStream" id=8]
-[ext_resource path="res://Music/Alexandr_Bulgarov_-_Outgoing.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Music/Got_No_Choice_-_Neon__Instrumental_.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Music/MPMProducer_-_Energizer.ogg" type="AudioStream" id=11]
-[ext_resource path="res://Music/Scream_Inc._-_Higher_And_Higher.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Music/SoundForYou_-_Drive.ogg" type="AudioStream" id=13]
-[ext_resource path="res://Music/T-Trider_-_Breakbeat_Racing.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Music/001-1475476-83Crutch-Action Modern Metal 6.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Music/002-1537958-83Crutch-Energetic Grunge.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Music/003-1347667-Alexandr Bulgarov-Outgoing.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Music/005-1294371-ANtarcticbreeze-ANtarcticbreeze - Total Control.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/006-1460209-Scream Inc.-Higher And Higher.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Music/007-1435315-SoundForYou-Drive.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Music/009-1637610-Winter Bear Studio-Energetic Metal.ogg" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/Kenney Pixel.ttf"
@@ -25,8 +22,8 @@ font_data = SubResource( 1 )
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 1 )
 Heart = ExtResource( 2 )
-total_music = 10
-debug_music = 10
+total_music = 7
+debug_music = 8
 
 [node name="Control" type="Control" parent="."]
 editor/display_folded = true
@@ -34,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Health" type="HBoxContainer" parent="Control"]
+editor/display_folded = true
 margin_left = 33.5136
 margin_top = 30.22
 margin_right = 176.514
@@ -102,12 +100,3 @@ stream = ExtResource( 10 )
 
 [node name="GameMusic7" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 11 )
-
-[node name="GameMusic8" parent="." instance=ExtResource( 4 )]
-stream = ExtResource( 12 )
-
-[node name="GameMusic9" parent="." instance=ExtResource( 4 )]
-stream = ExtResource( 13 )
-
-[node name="GameMusic10" parent="." instance=ExtResource( 4 )]
-stream = ExtResource( 14 )

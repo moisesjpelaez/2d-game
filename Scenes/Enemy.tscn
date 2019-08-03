@@ -443,7 +443,7 @@ editor/display_folded = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 9
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )
@@ -481,6 +481,7 @@ volume_db = -3.0
 
 [node name="Dead" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+volume_db = -5.0
 
 [node name="Step" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )

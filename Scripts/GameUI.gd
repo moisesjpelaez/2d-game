@@ -15,7 +15,7 @@ func _ready():
 	# Global.game_music = get_node("GameMusic" + str(debug_music))
 
 	$Control/Health.hide()
-	$Control/Label.text = "press the spacebar to start\n press 'esc' to quit"
+	$Control/Label.text = "press the spacebar to start"
 	
 	$RestartTimer.connect("timeout", self, "_on_RestartTimer_timeout")
 
