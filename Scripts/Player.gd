@@ -11,11 +11,16 @@ var attack_impulse = false
 var attack_speed = 100000
 export var hit = false
 
+var state_machine
+
 func _ready():
 	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
+	state_machine = $AnimationTree.get("parameters/playback")
 
 func _physics_process(delta):
+	var current_state = state_machine.get_current_node()
+
 	if hit:
 		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
 		return
@@ -50,27 +55,24 @@ func _physics_process(delta):
 			$Land.play()
 
 		motion.y = 10
+
+		if Input.is_action_just_pressed("attack"):
+			state_machine.travel("Combo1")
 		
-		if $Sprite/AnimationPlayer.current_animation != "GroundAttack":
+		if current_state != "Combo1":
 			if direction.x != 0:
-				$Sprite/AnimationPlayer.play("Run")
-			else:
-				$Sprite/AnimationPlayer.play("Idle")
+				state_machine.travel("Run")
+			if direction.x == 0:
+				state_machine.travel("Idle")
 
 			if Input.is_action_just_pressed("jump"):
 				$Jump.play()
-				$Sprite/AnimationPlayer.play("Jump")
+				state_machine.travel("Jump")
 				motion.y = -jump_speed
-		
-		if Input.is_action_just_pressed("attack"):
-			$Sprite/AnimationPlayer.play("GroundAttack")
 	else:
-		if Input.is_action_just_pressed("attack"):
-			$Sprite/AnimationPlayer.play("JumpAttack")
-
 		landed = false
 	
-	if $Sprite/AnimationPlayer.current_animation == "GroundAttack":
+	if $Sprite/AnimationPlayer.current_animation == "Combo1":
 		if attack_impulse:
 			if $Sprite.scale.x == -2:
 				motion.x = -attack_speed * delta
@@ -86,15 +88,12 @@ func _physics_process(delta):
 func attack_motion():
 	attack_impulse = true
 
-func play_audio(audio_node):
-	get_node(audio_node).play()
-
-func _on_HitArea_body_entered(body):
-	if body.is_in_group("Enemies"):
-		if body.lives > 0:
-			body.get_node("AnimationTree").get("parameters/playback").travel("Hit")
-		elif body.lives == 0:
-			body.get_node("AnimationTree").get("parameters/playback").travel("Die")
+func get_hit():
+	hit = true
+	if Global.player_lives > 0:
+		state_machine.travel("Hit")
+	elif Global.player_lives == 0:
+		state_machine.travel("Die")
 
 func get_damage():
 	$Hit.play()
@@ -104,3 +103,7 @@ func get_damage():
 		Global.player_lives -= 1
 	else:
 		Global.game_over()
+
+func _on_HitArea_body_entered(body):
+	if body.is_in_group("Enemies"):
+		body.get_hit()

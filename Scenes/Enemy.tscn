@@ -437,13 +437,13 @@ graph_offset = Vector2( -216.189, -121.576 )
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
+lives = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 editor/display_folded = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )

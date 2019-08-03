@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Enemy
 
-var lives = 3
+export var lives = 3
 var flip_direction = false
 var direction = Vector2()
 var motion = Vector2()
@@ -125,10 +125,12 @@ func _on_AttackTimer_timeout():
 	$AnimationTree.set("parameters/conditions/walk", false)
 	$AnimationTree.set("parameters/conditions/walk_fast", false)
 
+func get_hit():
+	if lives > 0:
+		$AnimationTree.get("parameters/playback").travel("Hit")
+	elif lives == 0:
+		$AnimationTree.get("parameters/playback").travel("Die")
+
 func _on_HitArea_body_entered(body):
 	if body is Player:
-		body.hit = true
-		if Global.player_lives > 0:
-			body.get_node("Sprite/AnimationPlayer").play("Hit")
-		elif Global.player_lives == 0:
-			body.get_node("Sprite/AnimationPlayer").play("Die")
+		body.get_hit()
