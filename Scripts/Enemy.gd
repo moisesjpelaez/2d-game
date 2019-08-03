@@ -7,12 +7,8 @@ var direction = Vector2()
 var motion = Vector2()
 var speed = 10000
 var gravity = 1000
-
 var attack_distance = 55
-
 var state_machine
-var hit_impulse = false
-var impulse_speed = 10000000
 export var hit = false
 
 func _ready():
@@ -31,25 +27,8 @@ func _physics_process(delta):
 		flip_direction(global_position.x > Global.player.global_position.x)
 	else:
 		direction.x = 0
-
-	if "Attack" in current_state:
-		direction.x = 0
-
-	if is_on_floor():
-		motion.y = 10
-		motion.x = direction.x * speed * delta
-	else:
-		motion.x = 0
-
-	if hit_impulse:
-		if $Sprite.scale.x == -2:
-			motion.x = -impulse_speed * delta
-			motion.y = impulse_speed * delta
-		else:
-			motion.x = impulse_speed * delta
-			motion.y = impulse_speed * delta
-		hit_impulse = false
 	
+	motion.x = direction.x * speed * delta
 	motion.y += gravity * delta
 	move_and_slide(motion, Vector2(0, -1))
 
@@ -78,7 +57,6 @@ func _on_AttackTimer_timeout():
 
 func get_hit():
 	if !hit:
-		hit_impulse = true
 		hit = true
 		if lives > 0:
 			state_machine.travel("Hit")

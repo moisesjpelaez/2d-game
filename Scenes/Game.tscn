@@ -133,3 +133,5 @@ autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource( 8 )]
 position = Vector2( 899.257, 416.146 )
+lives = 3
+hit = false
