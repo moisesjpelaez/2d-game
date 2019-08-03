@@ -46,7 +46,7 @@ func _physics_process(delta):
 		direction.x = 1
 	else:
 		direction.x = 0
-	
+
 	motion.x = direction.x * speed * delta
 
 	if is_on_floor():
@@ -55,24 +55,30 @@ func _physics_process(delta):
 			$Land.play()
 
 		motion.y = 10
-
-		if Input.is_action_just_pressed("attack"):
-			state_machine.travel("Combo1")
 		
-		if current_state != "Combo1":
+		if !("Combo" in current_state):
 			if direction.x != 0:
 				state_machine.travel("Run")
 			if direction.x == 0:
 				state_machine.travel("Idle")
 
-			if Input.is_action_just_pressed("jump"):
-				$Jump.play()
-				state_machine.travel("Jump")
-				motion.y = -jump_speed
+		if Input.is_action_just_pressed("jump"):
+			$Jump.play()
+			state_machine.travel("Jump")
+			motion.y = -jump_speed
+
+		if Input.is_action_just_pressed("attack"):
+			match current_state:
+				"Combo1":
+					state_machine.travel("Combo2")
+				"Combo2":
+					state_machine.travel("Combo3")
+				_:
+					state_machine.travel("Combo1")
 	else:
 		landed = false
 	
-	if $Sprite/AnimationPlayer.current_animation == "Combo1":
+	if "Combo" in current_state:
 		if attack_impulse:
 			if $Sprite.scale.x == -2:
 				motion.x = -attack_speed * delta
