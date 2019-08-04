@@ -20,6 +20,9 @@ func _ready():
 
 func _physics_process(delta):
 	var current_state = state_machine.get_current_node()
+	
+	if !("Combo" in current_state):
+		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
 
 	if hit:
 		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
@@ -76,6 +79,13 @@ func _physics_process(delta):
 				_:
 					state_machine.travel("Combo1")
 	else:
+		if Input.is_action_just_pressed("attack"):
+			if !("Combo3" in current_state):
+				if motion.y > 0:
+					motion.y = 0
+				state_machine.stop()
+				state_machine.start("Combo3")
+
 		landed = false
 	
 	if "Combo" in current_state:
@@ -84,6 +94,7 @@ func _physics_process(delta):
 				motion.x = -attack_speed * delta
 			else:
 				motion.x = attack_speed * delta
+
 			attack_impulse = false
 		else:
 			motion.x = 0
@@ -95,11 +106,15 @@ func attack_motion():
 	attack_impulse = true
 
 func get_hit():
+	if Global.game_is_over:
+		return
+
 	hit = true
+	state_machine.stop()
 	if Global.player_lives > 0:
-		state_machine.travel("Hit")
+		state_machine.start("Hit")
 	elif Global.player_lives == 0:
-		state_machine.travel("Die")
+		state_machine.start("Die")
 
 func get_damage():
 	$Hit.play()

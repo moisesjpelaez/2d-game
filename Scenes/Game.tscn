@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/GameUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/GameParallax.tscn" type="PackedScene" id=5]
 [ext_resource path="res://SFX/ForestCricket.ogg" type="AudioStream" id=6]
 [ext_resource path="res://SFX/ForestBirds.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7675, 483.413 )
@@ -130,8 +129,3 @@ autoplay = true
 [node name="BirdsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
-
-[node name="Enemy" parent="." instance=ExtResource( 8 )]
-position = Vector2( 899.257, 416.146 )
-lives = 3
-hit = false

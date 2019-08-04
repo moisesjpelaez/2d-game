@@ -1,8 +1,8 @@
 extends Position2D
 
 export (PackedScene) var Enemy
-var min_time = 5.0
-var max_time = 10.0
+var min_time = 3.0
+var max_time = 7.5
 
 func _ready():
 	Global.connect("start_game", self, "_on_Global_start_game")
