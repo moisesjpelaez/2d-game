@@ -23,7 +23,7 @@ font_data = SubResource( 1 )
 script = ExtResource( 1 )
 Heart = ExtResource( 2 )
 total_music = 7
-debug_music = 8
+debug_music = 7
 
 [node name="Control" type="Control" parent="."]
 editor/display_folded = true

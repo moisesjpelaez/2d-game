@@ -470,7 +470,7 @@ states/Run/position = Vector2( 594, 11 )
 transitions = [ "Idle", "Run", SubResource( 21 ), "Run", "Idle", SubResource( 22 ), "Idle", "Jump", SubResource( 23 ), "Jump", "Fall", SubResource( 24 ), "Fall", "Idle", SubResource( 25 ), "Idle", "Fall", SubResource( 26 ), "Idle", "Hit", SubResource( 31 ), "Hit", "Idle", SubResource( 32 ), "Idle", "Die", SubResource( 33 ), "Idle", "Combo1", SubResource( 41 ), "Combo1", "Idle", SubResource( 42 ), "Run", "Combo1", SubResource( 46 ), "Combo1", "Combo2", SubResource( 50 ), "Combo2", "Idle", SubResource( 51 ), "Combo3", "Idle", SubResource( 52 ), "Combo2", "Combo3", SubResource( 53 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -87, 46.2962 )
+graph_offset = Vector2( -34, -37.7038 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
@@ -483,7 +483,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Combo1 = SubResource( 1 )
@@ -520,6 +519,7 @@ smoothing_enabled = true
 tree_root = SubResource( 34 )
 anim_player = NodePath("../Sprite/AnimationPlayer")
 active = true
+process_mode = 0
 parameters/playback = SubResource( 35 )
 parameters/Combo1/TimeScale/scale = 2.0
 parameters/Combo2/TimeScale/scale = 2.0

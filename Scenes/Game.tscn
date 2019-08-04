@@ -19,6 +19,7 @@ extents = Vector2( 464.245, 25.5852 )
 [node name="GameUI" parent="." instance=ExtResource( 1 )]
 
 [node name="EnemySpawners" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Spawner" parent="EnemySpawners" instance=ExtResource( 2 )]
 
