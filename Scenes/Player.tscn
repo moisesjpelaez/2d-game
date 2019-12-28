@@ -11,25 +11,13 @@
 [sub_resource type="Animation" id=1]
 resource_name = "Combo1"
 length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 42, 43, 44, 45, 46, 47 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -37,29 +25,41 @@ tracks/1/keys = {
 "method": "attack_motion"
 } ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("HitArea/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sounds/Attack:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Attack:playing")
+tracks/3/path = NodePath(".:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 42, 43, 44, 45, 46, 47 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -90,7 +90,7 @@ tracks/1/keys = {
 "values": [ true, false, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Attack:playing")
+tracks/2/path = NodePath("../Sounds/Attack:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -158,7 +158,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Attack:playing")
+tracks/3/path = NodePath("../Sounds/Attack:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -317,35 +317,29 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("..")
+tracks/1/path = NodePath("../Sounds/Run")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Run:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10.0751, 16.8039 )
 
 [sub_resource type="CapsuleShape2D" id=11]
-radius = 10.4365
-height = 36.7447
+radius = 6.0
+height = 18.0
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Combo1"
@@ -470,21 +464,24 @@ states/Run/position = Vector2( 594, 11 )
 transitions = [ "Idle", "Run", SubResource( 27 ), "Run", "Idle", SubResource( 28 ), "Idle", "Jump", SubResource( 29 ), "Jump", "Fall", SubResource( 30 ), "Fall", "Idle", SubResource( 31 ), "Idle", "Fall", SubResource( 32 ), "Idle", "Hit", SubResource( 33 ), "Hit", "Idle", SubResource( 34 ), "Idle", "Die", SubResource( 35 ), "Idle", "Combo1", SubResource( 36 ), "Combo1", "Idle", SubResource( 37 ), "Run", "Combo1", SubResource( 38 ), "Combo1", "Combo2", SubResource( 39 ), "Combo2", "Idle", SubResource( 40 ), "Combo3", "Idle", SubResource( 41 ), "Combo2", "Combo3", SubResource( 42 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -34, -37.7038 )
+graph_offset = Vector2( -95, 57.2962 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=44]
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 14
 script = ExtResource( 1 )
+gravity = 700
+max_speed = 125
+acceletation = 1000
+jump_speed = 300
+attack_speed = 50000
 
 [node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 2
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Combo1 = SubResource( 1 )
@@ -506,15 +503,12 @@ shape = SubResource( 10 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 6.71575 )
+position = Vector2( 0, 3 )
 shape = SubResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = -870
-limit_top = -100
-limit_right = 1890
-limit_bottom = 576
+limit_smoothed = true
 smoothing_enabled = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -527,20 +521,23 @@ parameters/Combo1/TimeScale/scale = 2.0
 parameters/Combo2/TimeScale/scale = 2.0
 parameters/Combo3/TimeScale/scale = 2.0
 
-[node name="Run" type="AudioStreamPlayer" parent="."]
+[node name="Sounds" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Run" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 3 )
 
-[node name="Land" type="AudioStreamPlayer" parent="."]
+[node name="Land" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 4 )
 
-[node name="Jump" type="AudioStreamPlayer" parent="."]
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 5 )
 volume_db = 5.0
 
-[node name="Attack" type="AudioStreamPlayer" parent="."]
+[node name="Attack" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 6 )
 volume_db = -5.0
 
-[node name="Hit" type="AudioStreamPlayer" parent="."]
+[node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 7 )
 volume_db = -5.0

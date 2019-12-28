@@ -16,7 +16,6 @@
 font_path = "res://Fonts/Kenney Pixel.ttf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 30
 font_data = SubResource( 1 )
 
 [node name="GameUI" type="CanvasLayer"]
@@ -26,43 +25,41 @@ total_music = 7
 debug_music = 7
 
 [node name="Control" type="Control" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Health" type="HBoxContainer" parent="Control"]
 editor/display_folded = true
-margin_left = 33.5136
-margin_top = 30.22
-margin_right = 176.514
-margin_bottom = 71.22
-custom_constants/separation = 10
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 87.0
+margin_bottom = 34.0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="TextureRect" type="TextureRect" parent="Control/Health"]
-margin_right = 41.0
-margin_bottom = 41.0
+margin_right = 21.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="TextureRect2" type="TextureRect" parent="Control/Health"]
-margin_left = 51.0
-margin_right = 92.0
-margin_bottom = 41.0
+margin_left = 25.0
+margin_right = 46.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="TextureRect3" type="TextureRect" parent="Control/Health"]
-margin_left = 102.0
-margin_right = 143.0
-margin_bottom = 41.0
+margin_left = 50.0
+margin_right = 71.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )

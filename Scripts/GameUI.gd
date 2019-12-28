@@ -3,7 +3,7 @@ extends CanvasLayer
 export (Texture) var Heart
 export var total_music = 8
 
-export var debug_music = 6
+export var debug_music = 5
 
 func _ready():
 	Global.game_label = $Control/Label

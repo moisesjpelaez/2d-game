@@ -1,28 +1,28 @@
 extends KinematicBody2D
 class_name Enemy
 
-export var lives = 3
+export(int) var lives : int = 3
+export(int) var speed : int = 5000
+export(int) var gravity : int = 700
+export(int) var attack_distance : int = 35
+export(Vector2) var hit_speed = Vector2(100, -200)
+export(int) var attack_speed : int = 1500
+export(bool) var hit : bool = false
+export var attack_boost = false
+
 var flip_direction = false
 var direction = Vector2()
 var motion = Vector2()
-var speed = 12000
-var gravity = 1000
-var attack_distance = 70
-var state_machine
-
-export var hit = false
 var hit_impulse = false
-var hit_speed_x = 100
-var hit_speed_y = -200
 var dead = false
 
 var is_close = false
 var close_signal = false
-export var attack_boost = false
-var attack_speed = 1500
+
+onready var state_machine = $AnimationTree.get("parameters/playback")
+onready var sprite : Sprite = $Sprite
 
 func _ready():
-	state_machine = $AnimationTree.get("parameters/playback")
 	$AttackTimer.connect("timeout", self, "_on_AttackTimer_timeout")
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
 
@@ -51,8 +51,6 @@ func _physics_process(delta):
 			hit = false
 	
 	if is_on_floor():
-		motion.y = 10
-		
 		if dead:
 			add_collision_exception_with(Global.player)
 			motion.x = 0
@@ -61,13 +59,8 @@ func _physics_process(delta):
 
 		if hit_impulse:
 			motion.x = 0
-			if $Sprite.scale.x == -2:
-				motion.x = hit_speed_x
-				motion.y = hit_speed_y
-			else:
-				motion.x = -hit_speed_x
-				motion.y = hit_speed_y
-
+			motion = hit_speed
+			motion.x *= -sign(sprite.scale.x)
 			hit_impulse = false
 
 	if "Attack" in current_state && !hit:
@@ -89,10 +82,10 @@ func die():
 
 func flip_direction(flip):
 	if flip:
-		$Sprite.scale.x = -2
+		$Sprite.scale.x = -1
 		direction.x = -1
 	else:
-		$Sprite.scale.x = 2
+		$Sprite.scale.x = 1
 		direction.x = 1
 
 func _on_AttackTimer_timeout():

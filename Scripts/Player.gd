@@ -1,25 +1,31 @@
 extends KinematicBody2D
 class_name Player
 
-var gravity = 1000
-var speed = 20000
-var jump_speed = 500
-var direction = Vector2()
-var motion = Vector2()
+export(int) var gravity : int = 512
+export(int) var max_speed : int = 64
+export(int) var acceletation : int = 512
+export(float) var friction : float = 0.3
+export(int) var jump_speed : int = 128
+export(int) var attack_speed = 1024
+export(bool) var hit : bool = false
+export(int) var sprite_scale : int = 2
+
+var motion = Vector2.ZERO
 var landed = false
 var attack_impulse = false
-var attack_speed = 100000
-export var hit = false
 
-var state_machine
+onready var state_machine : AnimationNodeStateMachine = $AnimationTree.get("parameters/playback")
+onready var landing_sound : AudioStreamPlayer2D = $Sounds/Land
+onready var jump_sound : AudioStreamPlayer2D = $Sounds/Jump
+onready var hit_sound : AudioStreamPlayer2D = $Sounds/Hit
 
 func _ready():
 	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
-	state_machine = $AnimationTree.get("parameters/playback")
 
 func _physics_process(delta):
 	var current_state = state_machine.get_current_node()
+	var input_direction : float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
 	if !("Combo" in current_state):
 		$Sprite/HitArea/CollisionShape2D.set_deferred("disabled", true)
@@ -32,7 +38,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			if !landed:
 				landed = true
-				$Land.play()
+				landing_sound.play()
 	
 			motion.y = 10
 
@@ -41,32 +47,26 @@ func _physics_process(delta):
 		move_and_slide(motion, Vector2(0, -1))
 		return
 
-	if Input.is_action_pressed("move_left"):
-		$Sprite.scale.x = -2
-		direction.x = -1
-	elif Input.is_action_pressed("move_right"):
-		$Sprite.scale.x = 2
-		direction.x = 1
+	if input_direction != 0:
+		$Sprite.scale.x = sign(input_direction)
+		motion.x += input_direction * acceletation * delta
+		motion.x = clamp(motion.x, -max_speed, max_speed)
 	else:
-		direction.x = 0
-
-	motion.x = direction.x * speed * delta
+		motion.x = lerp(motion.x, 0, friction)
 
 	if is_on_floor():
 		if !landed:
 			landed = true
-			$Land.play()
-
-		motion.y = 10
+			landing_sound.play()
 		
 		if !("Combo" in current_state):
-			if direction.x != 0:
+			if input_direction != 0:
 				state_machine.travel("Run")
-			if direction.x == 0:
+			if input_direction == 0:
 				state_machine.travel("Idle")
 
 		if Input.is_action_just_pressed("jump"):
-			$Jump.play()
+			jump_sound.play()
 			state_machine.travel("Jump")
 			motion.y = -jump_speed
 
@@ -90,11 +90,7 @@ func _physics_process(delta):
 	
 	if "Combo" in current_state:
 		if attack_impulse:
-			if $Sprite.scale.x == -2:
-				motion.x = -attack_speed * delta
-			else:
-				motion.x = attack_speed * delta
-
+			motion.x = attack_speed * sign($Sprite.scale.x) * delta
 			attack_impulse = false
 		else:
 			motion.x = 0
@@ -117,7 +113,7 @@ func get_hit():
 		state_machine.start("Die")
 
 func get_damage():
-	$Hit.play()
+	hit_sound.play()
 
 	if Global.player_lives > 0:
 		Global.ui_health.get_child(Global.player_lives).texture = Global.heart_texture
