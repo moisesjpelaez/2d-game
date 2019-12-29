@@ -478,10 +478,11 @@ jump_speed = 300
 attack_speed = 50000
 
 [node name="Sprite" type="Sprite" parent="."]
+editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Combo1 = SubResource( 1 )

@@ -25,6 +25,7 @@ total_music = 7
 debug_music = 7
 
 [node name="Control" type="Control" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -32,36 +33,32 @@ anchor_bottom = 1.0
 editor/display_folded = true
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 87.0
-margin_bottom = 34.0
+margin_right = 75.0
+margin_bottom = 33.0
+custom_constants/separation = 0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="TextureRect" type="TextureRect" parent="Control/Health"]
+margin_left = 4.0
 margin_right = 21.0
-margin_bottom = 18.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_bottom = 17.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="TextureRect2" type="TextureRect" parent="Control/Health"]
-margin_left = 25.0
-margin_right = 46.0
-margin_bottom = 18.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_left = 21.0
+margin_right = 38.0
+margin_bottom = 17.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="TextureRect3" type="TextureRect" parent="Control/Health"]
-margin_left = 50.0
-margin_right = 71.0
-margin_bottom = 18.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_left = 38.0
+margin_right = 55.0
+margin_bottom = 17.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 

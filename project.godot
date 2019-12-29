@@ -36,12 +36,12 @@ Global="*res://Scripts/Global.gd"
 
 [display]
 
-window/size/width=384
-window/size/height=216
+window/size/width=512
+window/size/height=288
 window/size/resizable=false
 window/size/test_width=1024
 window/size/test_height=576
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [importer_defaults]
@@ -113,6 +113,8 @@ quit={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false

@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/GameUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Layer_0001_8.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/GameParallax.tscn" type="PackedScene" id=4]
-[ext_resource path="res://SFX/ForestCricket.ogg" type="AudioStream" id=5]
-[ext_resource path="res://SFX/ForestBirds.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ParallaxForeground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SFX/ForestCricket.ogg" type="AudioStream" id=7]
+[ext_resource path="res://SFX/ForestBirds.ogg" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7675, 483.413 )
@@ -46,7 +47,7 @@ editor/display_folded = true
 
 [node name="WallLeft" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
-position = Vector2( -1195, -230 )
+position = Vector2( -1195, -160 )
 collision_layer = 8
 collision_mask = 3
 __meta__ = {
@@ -58,7 +59,7 @@ shape = SubResource( 1 )
 
 [node name="WallRight" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
-position = Vector2( 1575, -230 )
+position = Vector2( 1575, -160 )
 collision_layer = 8
 collision_mask = 3
 __meta__ = {
@@ -70,7 +71,7 @@ shape = SubResource( 1 )
 
 [node name="Ground" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
-position = Vector2( -320, -320 )
+position = Vector2( -320, -250 )
 collision_layer = 4
 collision_mask = 3
 
@@ -85,7 +86,7 @@ shape = SubResource( 2 )
 
 [node name="Ground2" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
-position = Vector2( 600, -320 )
+position = Vector2( 600, -250 )
 collision_layer = 4
 collision_mask = 3
 __meta__ = {
@@ -103,7 +104,7 @@ shape = SubResource( 2 )
 
 [node name="Ground3" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
-position = Vector2( -1240, -320 )
+position = Vector2( -1240, -250 )
 collision_layer = 4
 collision_mask = 3
 __meta__ = {
@@ -122,18 +123,17 @@ shape = SubResource( 2 )
 [node name="ParallaxGroups" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="GameParallax" parent="ParallaxGroups" instance=ExtResource( 4 )]
+[node name="ParallaxBackground" parent="ParallaxGroups" instance=ExtResource( 4 )]
+editor/display_folded = true
 
-[node name="CricketSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-autoplay = true
+[node name="ParallaxForeground" parent="ParallaxGroups" instance=ExtResource( 5 )]
 
-[node name="BirdsSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-autoplay = true
+[node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
+position = Vector2( 256, 144 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 192, 108 )
+[node name="Sprite" parent="Player" index="0"]
+frame = 2
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -1185
@@ -143,5 +143,16 @@ limit_bottom = 220
 
 [node name="AnimationTree" parent="Player" index="3"]
 parameters/playback = SubResource( 3 )
+
+[node name="Sounds" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="CricketSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="BirdsSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
+autoplay = true
 
 [editable path="Player"]
