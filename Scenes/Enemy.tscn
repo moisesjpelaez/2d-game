@@ -425,14 +425,15 @@ graph_offset = Vector2( -257.189, -35.576 )
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
-gravity = 500
-hit_speed = Vector2( 50, -100 )
-attack_speed = 750
+gravity = 1000
+attack_distance = 30
+hit_speed = Vector2( 75, -130 )
 
 [node name="Sprite" type="Sprite" parent="."]
+editor/display_folded = true
 texture = ExtResource( 2 )
 hframes = 11
-frame = 1
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )

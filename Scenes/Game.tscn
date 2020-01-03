@@ -43,7 +43,6 @@ position = Vector2( -602.38, -41.882 )
 position = Vector2( -960, -70.648 )
 
 [node name="Collisions" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="WallLeft" type="StaticBody2D" parent="Collisions"]
 editor/display_folded = true
@@ -131,9 +130,6 @@ editor/display_folded = true
 [node name="Player" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 256, 144 )
-
-[node name="Sprite" parent="Player" index="0"]
-frame = 2
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -1185
