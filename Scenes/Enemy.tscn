@@ -428,12 +428,13 @@ script = ExtResource( 1 )
 gravity = 1000
 attack_distance = 30
 hit_speed = Vector2( 75, -130 )
+attack_speed = 1200
 
 [node name="Sprite" type="Sprite" parent="."]
 editor/display_folded = true
 texture = ExtResource( 2 )
 hframes = 11
-frame = 8
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )

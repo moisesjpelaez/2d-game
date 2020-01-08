@@ -61,7 +61,7 @@ tracks/1/keys = {
 }
 
 [node name="GameMusic" type="AudioStreamPlayer"]
-volume_db = -50.0
+volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 1 )

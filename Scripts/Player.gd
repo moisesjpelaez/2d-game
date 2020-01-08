@@ -7,6 +7,7 @@ export(int) var acceletation : int = 512
 export(float) var friction : float = 0.3
 export(int) var jump_speed : int = 128
 export(int) var attack_speed = 1024
+export(int) var air_combo_speed = 2048
 export(bool) var hit : bool = false
 export(int) var sprite_scale : int = 2
 
@@ -22,6 +23,7 @@ onready var hit_sound : AudioStreamPlayer2D = $Sounds/Hit
 func _ready():
 	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
+	$Sprite/AirComboArea.connect("body_entered", self, "_on_HitArea_body_entered")
 
 func _physics_process(delta):
 	var current_state = state_machine.get_current_node()
@@ -58,6 +60,9 @@ func _physics_process(delta):
 		if !landed:
 			landed = true
 			landing_sound.play()
+			
+			if "AirComboLoop" in current_state:
+				state_machine.start("AirComboEnd")
 		
 		if !("Combo" in current_state):
 			if input_direction != 0:
@@ -80,11 +85,10 @@ func _physics_process(delta):
 					state_machine.travel("Combo1")
 	else:
 		if Input.is_action_just_pressed("attack"):
-			if !("Combo3" in current_state):
-				if motion.y > 0:
-					motion.y = 0
+			if !("AirCombo" in current_state):
+				motion.y = 0
 				state_machine.stop()
-				state_machine.start("Combo3")
+				state_machine.start("AirComboStart")
 
 		landed = false
 	
@@ -94,8 +98,12 @@ func _physics_process(delta):
 			attack_impulse = false
 		else:
 			motion.x = 0
-
-	motion.y += gravity * delta
+	
+	if !("AirCombo" in current_state):
+		motion.y += gravity * delta
+	else: 
+		motion.y += air_combo_speed * delta
+		
 	move_and_slide(motion, Vector2(0, -1))
 
 func attack_motion():

@@ -1,12 +1,237 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/adventurer-Sheet.png" type="Texture" id=2]
-[ext_resource path="res://SFX/Walk.ogg" type="AudioStream" id=3]
-[ext_resource path="res://SFX/Landing.ogg" type="AudioStream" id=4]
-[ext_resource path="res://SFX/Jump.ogg" type="AudioStream" id=5]
-[ext_resource path="res://SFX/Attack.ogg" type="AudioStream" id=6]
-[ext_resource path="res://SFX/Hit.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack-3-end-00.png" type="Texture" id=3]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack-3-end-01.png" type="Texture" id=4]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack-3-end-02.png" type="Texture" id=5]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack3-loop-00.png" type="Texture" id=6]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack3-loop-01.png" type="Texture" id=7]
+[ext_resource path="res://Art/AirCombo/adventurer-air-attack3-rdy-00.png" type="Texture" id=8]
+[ext_resource path="res://SFX/Walk.ogg" type="AudioStream" id=9]
+[ext_resource path="res://SFX/Landing.ogg" type="AudioStream" id=10]
+[ext_resource path="res://SFX/Jump.ogg" type="AudioStream" id=11]
+[ext_resource path="res://SFX/Attack.ogg" type="AudioStream" id=12]
+[ext_resource path="res://SFX/Hit.ogg" type="AudioStream" id=13]
+
+[sub_resource type="Animation" id=47]
+resource_name = "AirComboEnd"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:vframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AirComboArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:collision_mask")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "AirComboLoop"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "AirComboStart"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../Sounds/Attack")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AirComboArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:collision_mask")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Combo1"
@@ -60,6 +285,42 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 42, 43, 44, 45, 46, 47 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:vframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -115,6 +376,42 @@ tracks/3/keys = {
 "method": "attack_motion"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:vframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Combo3"
@@ -169,6 +466,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:vframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.5
@@ -210,6 +543,54 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AirComboArea/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Fall"
@@ -227,6 +608,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 22, 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -269,6 +686,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
 
 [sub_resource type="Animation" id=7]
 loop = true
@@ -285,6 +738,66 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AirComboArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:collision_mask")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
 
 [sub_resource type="Animation" id=8]
 length = 0.8
@@ -299,6 +812,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19, 20, 21 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -333,13 +882,61 @@ tracks/1/keys = {
 "method": "play"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10.0751, 16.8039 )
 
+[sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 32, 16 )
+
 [sub_resource type="CapsuleShape2D" id=11]
 radius = 6.0
 height = 18.0
+
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "AirComboEnd"
+
+[sub_resource type="AnimationNodeAnimation" id=50]
+animation = "AirComboLoop"
+
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "AirComboStart"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Combo1"
@@ -442,7 +1039,25 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=43]
+states/AirComboEnd/node = SubResource( 49 )
+states/AirComboEnd/position = Vector2( 778, 119 )
+states/AirComboLoop/node = SubResource( 50 )
+states/AirComboLoop/position = Vector2( 778, 11 )
+states/AirComboStart/node = SubResource( 51 )
+states/AirComboStart/position = Vector2( 778, -75 )
 states/Combo1/node = SubResource( 14 )
 states/Combo1/position = Vector2( 53, 11 )
 states/Combo2/node = SubResource( 17 )
@@ -461,10 +1076,10 @@ states/Jump/node = SubResource( 25 )
 states/Jump/position = Vector2( 516, -75 )
 states/Run/node = SubResource( 26 )
 states/Run/position = Vector2( 594, 11 )
-transitions = [ "Idle", "Run", SubResource( 27 ), "Run", "Idle", SubResource( 28 ), "Idle", "Jump", SubResource( 29 ), "Jump", "Fall", SubResource( 30 ), "Fall", "Idle", SubResource( 31 ), "Idle", "Fall", SubResource( 32 ), "Idle", "Hit", SubResource( 33 ), "Hit", "Idle", SubResource( 34 ), "Idle", "Die", SubResource( 35 ), "Idle", "Combo1", SubResource( 36 ), "Combo1", "Idle", SubResource( 37 ), "Run", "Combo1", SubResource( 38 ), "Combo1", "Combo2", SubResource( 39 ), "Combo2", "Idle", SubResource( 40 ), "Combo3", "Idle", SubResource( 41 ), "Combo2", "Combo3", SubResource( 42 ) ]
+transitions = [ "Idle", "Run", SubResource( 27 ), "Run", "Idle", SubResource( 28 ), "Idle", "Jump", SubResource( 29 ), "Jump", "Fall", SubResource( 30 ), "Fall", "Idle", SubResource( 31 ), "Idle", "Fall", SubResource( 32 ), "Idle", "Hit", SubResource( 33 ), "Hit", "Idle", SubResource( 34 ), "Idle", "Die", SubResource( 35 ), "Idle", "Combo1", SubResource( 36 ), "Combo1", "Idle", SubResource( 37 ), "Run", "Combo1", SubResource( 38 ), "Combo1", "Combo2", SubResource( 39 ), "Combo2", "Idle", SubResource( 40 ), "Combo3", "Idle", SubResource( 41 ), "Combo2", "Combo3", SubResource( 42 ), "Jump", "AirComboStart", SubResource( 52 ), "AirComboStart", "AirComboLoop", SubResource( 53 ), "AirComboLoop", "AirComboEnd", SubResource( 54 ), "AirComboEnd", "Idle", SubResource( 55 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -95, 57.2962 )
+graph_offset = Vector2( 28, -23.7038 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=44]
 
@@ -475,16 +1090,20 @@ gravity = 1000
 max_speed = 150
 acceletation = 1200
 jump_speed = 400
-attack_speed = 65000
+attack_speed = 60000
+air_combo_speed = 4096
 
 [node name="Sprite" type="Sprite" parent="."]
 editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 1
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/AirComboEnd = SubResource( 47 )
+anims/AirComboLoop = SubResource( 46 )
+anims/AirComboStart = SubResource( 45 )
 anims/Combo1 = SubResource( 1 )
 anims/Combo2 = SubResource( 2 )
 anims/Combo3 = SubResource( 3 )
@@ -501,6 +1120,13 @@ editor/display_folded = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HitArea"]
 position = Vector2( 15.9429, -2.23992 )
 shape = SubResource( 10 )
+disabled = true
+
+[node name="AirComboArea" type="Area2D" parent="Sprite"]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AirComboArea"]
+shape = SubResource( 48 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -526,19 +1152,19 @@ parameters/Combo3/TimeScale/scale = 2.0
 editor/display_folded = true
 
 [node name="Run" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 3 )
+stream = ExtResource( 9 )
 
 [node name="Land" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 4 )
+stream = ExtResource( 10 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 5 )
+stream = ExtResource( 11 )
 volume_db = 5.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 6 )
+stream = ExtResource( 12 )
 volume_db = -5.0
 
 [node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 7 )
+stream = ExtResource( 13 )
 volume_db = -5.0
