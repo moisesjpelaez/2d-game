@@ -129,13 +129,12 @@ editor/display_folded = true
 [node name="ParallaxForeground" parent="ParallaxGroups" instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 256, 144 )
 
 [node name="Sprite" parent="Player" index="0"]
-frame = 1
+frame = 3
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="GameCamera" parent="Player" index="2"]
 limit_left = -1185
 limit_top = 0
 limit_right = 1565
@@ -143,6 +142,9 @@ limit_bottom = 220
 
 [node name="AnimationTree" parent="Player" index="3"]
 parameters/playback = SubResource( 3 )
+
+[node name="Sounds" parent="Player" index="4"]
+editor/display_folded = true
 
 [node name="Sounds" type="Node" parent="."]
 editor/display_folded = true

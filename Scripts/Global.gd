@@ -16,6 +16,7 @@ var restart_text = "press the spacebar to try again"
 var game_over_text = "game over"
 
 signal start_game
+signal shake_screen(amount, duration)
 
 func start_game():
     player_lives = 2

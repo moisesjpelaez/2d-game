@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/adventurer-Sheet.png" type="Texture" id=2]
@@ -8,13 +8,15 @@
 [ext_resource path="res://Art/AirCombo/adventurer-air-attack3-loop-00.png" type="Texture" id=6]
 [ext_resource path="res://Art/AirCombo/adventurer-air-attack3-loop-01.png" type="Texture" id=7]
 [ext_resource path="res://Art/AirCombo/adventurer-air-attack3-rdy-00.png" type="Texture" id=8]
-[ext_resource path="res://SFX/Walk.ogg" type="AudioStream" id=9]
-[ext_resource path="res://SFX/Landing.ogg" type="AudioStream" id=10]
-[ext_resource path="res://SFX/Jump.ogg" type="AudioStream" id=11]
-[ext_resource path="res://SFX/Attack.ogg" type="AudioStream" id=12]
-[ext_resource path="res://SFX/Hit.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Scripts/GameCamera.gd" type="Script" id=9]
+[ext_resource path="res://SFX/Walk.ogg" type="AudioStream" id=10]
+[ext_resource path="res://SFX/Landing.ogg" type="AudioStream" id=11]
+[ext_resource path="res://SFX/Jump.ogg" type="AudioStream" id=12]
+[ext_resource path="res://SFX/Attack.ogg" type="AudioStream" id=13]
+[ext_resource path="res://SFX/Hit.ogg" type="AudioStream" id=14]
+[ext_resource path="res://SFX/Stomp.wav" type="AudioStream" id=15]
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=1]
 resource_name = "AirComboEnd"
 length = 0.3
 tracks/0/type = "value"
@@ -90,7 +92,7 @@ tracks/5/keys = {
 "values": [ 14 ]
 }
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=2]
 resource_name = "AirComboLoop"
 length = 0.2
 loop = true
@@ -143,9 +145,10 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=3]
 resource_name = "AirComboStart"
-length = 0.1
+length = 0.4
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
@@ -153,10 +156,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 2 ), ExtResource( 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:vframes")
@@ -165,10 +168,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 11, 1 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:hframes")
@@ -177,10 +180,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 7, 1 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath(".:frame")
@@ -189,10 +192,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 16, 17, 18, 19, 20, 21, 0 ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath("../Sounds/Attack")
@@ -201,7 +204,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0.0 ],
@@ -215,7 +218,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -233,8 +236,7 @@ tracks/6/keys = {
 "values": [ 12 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Combo1"
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
@@ -323,8 +325,7 @@ tracks/6/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Combo2"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -413,8 +414,7 @@ tracks/6/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Combo3"
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -503,7 +503,7 @@ tracks/6/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -592,8 +592,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Fall"
+[sub_resource type="Animation" id=8]
 length = 0.3
 loop = true
 step = 0.05
@@ -646,7 +645,7 @@ tracks/3/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -723,7 +722,7 @@ tracks/5/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -799,7 +798,7 @@ tracks/5/keys = {
 "values": [ 14 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -850,7 +849,7 @@ tracks/3/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -919,101 +918,83 @@ tracks/4/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 10.0751, 16.8039 )
 
-[sub_resource type="RectangleShape2D" id=48]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 32, 16 )
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=15]
 radius = 6.0
 height = 18.0
 
-[sub_resource type="AnimationNodeAnimation" id=49]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "AirComboEnd"
 
-[sub_resource type="AnimationNodeAnimation" id=50]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "AirComboLoop"
 
-[sub_resource type="AnimationNodeAnimation" id=51]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "AirComboStart"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Combo1"
 
-[sub_resource type="AnimationNodeTimeScale" id=13]
+[sub_resource type="AnimationNodeTimeScale" id=20]
 
-[sub_resource type="AnimationNodeBlendTree" id=14]
+[sub_resource type="AnimationNodeBlendTree" id=21]
 graph_offset = Vector2( -182, 55 )
-nodes/Animation/node = SubResource( 12 )
+nodes/Animation/node = SubResource( 19 )
 nodes/Animation/position = Vector2( -140, 140 )
-nodes/TimeScale/node = SubResource( 13 )
+nodes/TimeScale/node = SubResource( 20 )
 nodes/TimeScale/position = Vector2( 40, 140 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "Combo2"
 
-[sub_resource type="AnimationNodeTimeScale" id=16]
+[sub_resource type="AnimationNodeTimeScale" id=23]
 
-[sub_resource type="AnimationNodeBlendTree" id=17]
+[sub_resource type="AnimationNodeBlendTree" id=24]
 graph_offset = Vector2( -231, 63 )
-nodes/Animation/node = SubResource( 15 )
+nodes/Animation/node = SubResource( 22 )
 nodes/Animation/position = Vector2( -100, 160 )
-nodes/TimeScale/node = SubResource( 16 )
+nodes/TimeScale/node = SubResource( 23 )
 nodes/TimeScale/position = Vector2( 120, 160 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Combo3"
 
-[sub_resource type="AnimationNodeTimeScale" id=19]
+[sub_resource type="AnimationNodeTimeScale" id=26]
 
-[sub_resource type="AnimationNodeBlendTree" id=20]
+[sub_resource type="AnimationNodeBlendTree" id=27]
 graph_offset = Vector2( -211, 102 )
-nodes/Animation/node = SubResource( 18 )
+nodes/Animation/node = SubResource( 25 )
 nodes/Animation/position = Vector2( -60, 160 )
-nodes/TimeScale/node = SubResource( 19 )
+nodes/TimeScale/node = SubResource( 26 )
 nodes/TimeScale/position = Vector2( 120, 180 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "Fall"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "Hit"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "Jump"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
@@ -1026,18 +1007,42 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
 
@@ -1045,43 +1050,37 @@ switch_mode = 2
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=43]
-states/AirComboEnd/node = SubResource( 49 )
+[sub_resource type="AnimationNodeStateMachine" id=54]
+states/AirComboEnd/node = SubResource( 16 )
 states/AirComboEnd/position = Vector2( 778, 119 )
-states/AirComboLoop/node = SubResource( 50 )
+states/AirComboLoop/node = SubResource( 17 )
 states/AirComboLoop/position = Vector2( 778, 11 )
-states/AirComboStart/node = SubResource( 51 )
+states/AirComboStart/node = SubResource( 18 )
 states/AirComboStart/position = Vector2( 778, -75 )
-states/Combo1/node = SubResource( 14 )
+states/Combo1/node = SubResource( 21 )
 states/Combo1/position = Vector2( 53, 11 )
-states/Combo2/node = SubResource( 17 )
+states/Combo2/node = SubResource( 24 )
 states/Combo2/position = Vector2( 53, 119 )
-states/Combo3/node = SubResource( 20 )
+states/Combo3/node = SubResource( 27 )
 states/Combo3/position = Vector2( 53, 216 )
-states/Die/node = SubResource( 21 )
+states/Die/node = SubResource( 28 )
 states/Die/position = Vector2( 472, 223 )
-states/Fall/node = SubResource( 22 )
+states/Fall/node = SubResource( 29 )
 states/Fall/position = Vector2( 296, -75 )
-states/Hit/node = SubResource( 23 )
+states/Hit/node = SubResource( 30 )
 states/Hit/position = Vector2( 296, 288 )
-states/Idle/node = SubResource( 24 )
+states/Idle/node = SubResource( 31 )
 states/Idle/position = Vector2( 296, 119 )
-states/Jump/node = SubResource( 25 )
+states/Jump/node = SubResource( 32 )
 states/Jump/position = Vector2( 516, -75 )
-states/Run/node = SubResource( 26 )
+states/Run/node = SubResource( 33 )
 states/Run/position = Vector2( 594, 11 )
-transitions = [ "Idle", "Run", SubResource( 27 ), "Run", "Idle", SubResource( 28 ), "Idle", "Jump", SubResource( 29 ), "Jump", "Fall", SubResource( 30 ), "Fall", "Idle", SubResource( 31 ), "Idle", "Fall", SubResource( 32 ), "Idle", "Hit", SubResource( 33 ), "Hit", "Idle", SubResource( 34 ), "Idle", "Die", SubResource( 35 ), "Idle", "Combo1", SubResource( 36 ), "Combo1", "Idle", SubResource( 37 ), "Run", "Combo1", SubResource( 38 ), "Combo1", "Combo2", SubResource( 39 ), "Combo2", "Idle", SubResource( 40 ), "Combo3", "Idle", SubResource( 41 ), "Combo2", "Combo3", SubResource( 42 ), "Jump", "AirComboStart", SubResource( 52 ), "AirComboStart", "AirComboLoop", SubResource( 53 ), "AirComboLoop", "AirComboEnd", SubResource( 54 ), "AirComboEnd", "Idle", SubResource( 55 ) ]
+transitions = [ "Idle", "Run", SubResource( 34 ), "Run", "Idle", SubResource( 35 ), "Idle", "Jump", SubResource( 36 ), "Jump", "Fall", SubResource( 37 ), "Fall", "Idle", SubResource( 38 ), "Idle", "Fall", SubResource( 39 ), "Idle", "Hit", SubResource( 40 ), "Hit", "Idle", SubResource( 41 ), "Idle", "Die", SubResource( 42 ), "Idle", "Combo1", SubResource( 43 ), "Combo1", "Idle", SubResource( 44 ), "Run", "Combo1", SubResource( 45 ), "Combo1", "Combo2", SubResource( 46 ), "Combo2", "Idle", SubResource( 47 ), "Combo3", "Idle", SubResource( 48 ), "Combo2", "Combo3", SubResource( 49 ), "Jump", "AirComboStart", SubResource( 50 ), "AirComboStart", "AirComboLoop", SubResource( 51 ), "AirComboLoop", "AirComboEnd", SubResource( 52 ), "AirComboEnd", "Idle", SubResource( 53 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( 28, -23.7038 )
+graph_offset = Vector2( 310, -113.704 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 14
@@ -1094,77 +1093,85 @@ attack_speed = 60000
 air_combo_speed = 4096
 
 [node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/AirComboEnd = SubResource( 47 )
-anims/AirComboLoop = SubResource( 46 )
-anims/AirComboStart = SubResource( 45 )
-anims/Combo1 = SubResource( 1 )
-anims/Combo2 = SubResource( 2 )
-anims/Combo3 = SubResource( 3 )
-anims/Die = SubResource( 4 )
-anims/Fall = SubResource( 5 )
-anims/Hit = SubResource( 6 )
-anims/Idle = SubResource( 7 )
-anims/Jump = SubResource( 8 )
-anims/Run = SubResource( 9 )
+anims/AirComboEnd = SubResource( 1 )
+anims/AirComboLoop = SubResource( 2 )
+anims/AirComboStart = SubResource( 3 )
+anims/Combo1 = SubResource( 4 )
+anims/Combo2 = SubResource( 5 )
+anims/Combo3 = SubResource( 6 )
+anims/Die = SubResource( 7 )
+anims/Fall = SubResource( 8 )
+anims/Hit = SubResource( 9 )
+anims/Idle = SubResource( 10 )
+anims/Jump = SubResource( 11 )
+anims/Run = SubResource( 12 )
 
 [node name="HitArea" type="Area2D" parent="Sprite"]
 editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HitArea"]
 position = Vector2( 15.9429, -2.23992 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 disabled = true
 
 [node name="AirComboArea" type="Area2D" parent="Sprite"]
 editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AirComboArea"]
-shape = SubResource( 48 )
+shape = SubResource( 14 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )
-shape = SubResource( 11 )
+shape = SubResource( 15 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GameCamera" type="Camera2D" parent="."]
+editor/display_folded = true
 current = true
 limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
 smoothing_enabled = true
+script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="GameCamera"]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 43 )
+tree_root = SubResource( 54 )
 anim_player = NodePath("../Sprite/AnimationPlayer")
 active = true
 process_mode = 0
-parameters/playback = SubResource( 44 )
+parameters/playback = SubResource( 55 )
 parameters/Combo1/TimeScale/scale = 2.0
 parameters/Combo2/TimeScale/scale = 2.0
 parameters/Combo3/TimeScale/scale = 2.0
 
 [node name="Sounds" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Run" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 9 )
-
-[node name="Land" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 10 )
 
-[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+[node name="Land" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 11 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 12 )
 volume_db = 5.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = -5.0
 
 [node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 volume_db = -5.0
+
+[node name="Stomp" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 15 )
+[connection signal="timeout" from="GameCamera/Timer" to="GameCamera" method="_on_Timer_timeout"]

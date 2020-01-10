@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Enemy
 
-export(int) var lives : int = 3
+export(int) var lives : int = 4
 export(int) var speed : int = 5000
 export(int) var gravity : int = 700
 export(int) var attack_distance : int = 35
@@ -15,6 +15,7 @@ var direction = Vector2()
 var motion = Vector2()
 var hit_impulse = false
 var dead = false
+var damage_amount = 1
 
 var is_close = false
 var close_signal = false
@@ -75,7 +76,7 @@ func _physics_process(delta):
 	move_and_slide(motion, Vector2(0, -1))
 
 func get_damage():
-	lives -= 1
+	lives -= damage_amount
 
 func die():
 	queue_free()
@@ -95,16 +96,18 @@ func _on_AttackTimer_timeout():
 		if !Global.game_is_over:
 			$AttackTimer.start()
 
-func get_hit():
+func get_hit(amount):
 	if !hit:
+		damage_amount = amount
+		$Sprite/AnimationPlayer.get_animation("Hit")
 		hit_impulse = true
 		hit = true
 		state_machine.stop()
-		if lives > 0:
-			state_machine.start("Hit")
-		elif lives <= 0:
+		if lives <= 0 || amount >= lives:
 			dead = true
 			state_machine.start("Die")
+		elif lives > 0:
+			state_machine.start("Hit")
 
 func _on_HitArea_body_entered(body):
 	if body is Player:

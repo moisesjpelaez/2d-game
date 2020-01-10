@@ -19,11 +19,12 @@ onready var state_machine : AnimationNodeStateMachine = $AnimationTree.get("para
 onready var landing_sound : AudioStreamPlayer2D = $Sounds/Land
 onready var jump_sound : AudioStreamPlayer2D = $Sounds/Jump
 onready var hit_sound : AudioStreamPlayer2D = $Sounds/Hit
+onready var stomp_sound : AudioStreamPlayer2D = $Sounds/Stomp
 
 func _ready():
 	Global.player = self
 	$Sprite/HitArea.connect("body_entered", self, "_on_HitArea_body_entered")
-	$Sprite/AirComboArea.connect("body_entered", self, "_on_HitArea_body_entered")
+	$Sprite/AirComboArea.connect("body_entered", self, "_on_AirComboArea_body_entered")
 
 func _physics_process(delta):
 	var current_state = state_machine.get_current_node()
@@ -57,13 +58,18 @@ func _physics_process(delta):
 		motion.x = lerp(motion.x, 0, friction)
 
 	if is_on_floor():
-		if !landed:
-			landed = true
-			landing_sound.play()
+		if is_on_floor():
+			if !landed:
+				landed = true
+				landing_sound.play()
+	
+			motion.y = 10
 			
 			if "AirComboLoop" in current_state:
 				state_machine.start("AirComboEnd")
-		
+				Global.emit_signal("shake_screen", 0.7, 0.35)
+				stomp_sound.play()
+				
 		if !("Combo" in current_state):
 			if input_direction != 0:
 				state_machine.travel("Run")
@@ -86,7 +92,7 @@ func _physics_process(delta):
 	else:
 		if Input.is_action_just_pressed("attack"):
 			if !("AirCombo" in current_state):
-				motion.y = 0
+				motion.y = -jump_speed
 				state_machine.stop()
 				state_machine.start("AirComboStart")
 
@@ -121,6 +127,7 @@ func get_hit():
 		state_machine.start("Die")
 
 func get_damage():
+	Global.emit_signal("shake_screen", 0.25, 0.5)
 	hit_sound.play()
 
 	if Global.player_lives > 0:
@@ -131,4 +138,9 @@ func get_damage():
 
 func _on_HitArea_body_entered(body):
 	if body.is_in_group("Enemies"):
-		body.get_hit()
+		body.get_hit(1)
+		
+func _on_AirComboArea_body_entered(body):
+	if body.is_in_group("Enemies"):
+		body.get_hit(5)
+		

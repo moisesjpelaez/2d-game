@@ -167,6 +167,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("HitArea/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.7
@@ -415,7 +427,7 @@ states/Walk/position = Vector2( 66, 9 )
 transitions = [ "Idle", "Die", SubResource( 17 ), "Idle", "Walk", SubResource( 18 ), "Idle", "Attack", SubResource( 19 ), "Attack", "Idle", SubResource( 20 ), "Walk", "Idle", SubResource( 21 ), "Idle", "Hit", SubResource( 22 ), "Hit", "Idle", SubResource( 23 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -257.189, -35.576 )
+graph_offset = Vector2( -291.189, 12.424 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
@@ -429,12 +441,13 @@ gravity = 1000
 attack_distance = 30
 hit_speed = Vector2( 75, -130 )
 attack_speed = 1200
+hit = true
 
 [node name="Sprite" type="Sprite" parent="."]
 editor/display_folded = true
 texture = ExtResource( 2 )
 hframes = 11
-frame = 3
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Attack = SubResource( 1 )
@@ -445,6 +458,7 @@ anims/Walk = SubResource( 5 )
 
 [node name="HitArea" type="Area2D" parent="Sprite"]
 editor/display_folded = true
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HitArea"]
 position = Vector2( 13.8695, 2.04392 )
