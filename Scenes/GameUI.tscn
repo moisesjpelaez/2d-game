@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://Art/background.png" type="Texture" id=2]
 [ext_resource path="res://Art/heart.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/GameMusic.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/Kenney Pixel.ttf"
@@ -14,7 +13,6 @@ font_data = SubResource( 1 )
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 1 )
 Heart = ExtResource( 2 )
-total_music = 7
 debug_music = 7
 
 [node name="Control" type="Control" parent="."]
@@ -65,16 +63,4 @@ valign = 1
 wait_time = 3.0
 one_shot = true
 
-[node name="GameMusic1" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic2" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic3" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic4" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic5" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic6" parent="." instance=ExtResource( 4 )]
-
-[node name="GameMusic7" parent="." instance=ExtResource( 4 )]
+[node name="Music" type="Node" parent="."]
