@@ -1078,7 +1078,7 @@ states/Run/position = Vector2( 594, 11 )
 transitions = [ "Idle", "Run", SubResource( 34 ), "Run", "Idle", SubResource( 35 ), "Idle", "Jump", SubResource( 36 ), "Jump", "Fall", SubResource( 37 ), "Fall", "Idle", SubResource( 38 ), "Idle", "Fall", SubResource( 39 ), "Idle", "Hit", SubResource( 40 ), "Hit", "Idle", SubResource( 41 ), "Idle", "Die", SubResource( 42 ), "Idle", "Combo1", SubResource( 43 ), "Combo1", "Idle", SubResource( 44 ), "Run", "Combo1", SubResource( 45 ), "Combo1", "Combo2", SubResource( 46 ), "Combo2", "Idle", SubResource( 47 ), "Combo3", "Idle", SubResource( 48 ), "Combo2", "Combo3", SubResource( 49 ), "Jump", "AirComboStart", SubResource( 50 ), "AirComboStart", "AirComboLoop", SubResource( 51 ), "AirComboLoop", "AirComboEnd", SubResource( 52 ), "AirComboEnd", "Idle", SubResource( 53 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( 310, -113.704 )
+graph_offset = Vector2( -127, 5.07199 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 
@@ -1096,7 +1096,7 @@ air_combo_speed = 4096
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 7
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/AirComboEnd = SubResource( 1 )
@@ -1113,7 +1113,6 @@ anims/Jump = SubResource( 11 )
 anims/Run = SubResource( 12 )
 
 [node name="HitArea" type="Area2D" parent="Sprite"]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HitArea"]
 position = Vector2( 15.9429, -2.23992 )
@@ -1121,7 +1120,6 @@ shape = SubResource( 13 )
 disabled = true
 
 [node name="AirComboArea" type="Area2D" parent="Sprite"]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AirComboArea"]
 shape = SubResource( 14 )
@@ -1132,11 +1130,8 @@ position = Vector2( 0, 3 )
 shape = SubResource( 15 )
 
 [node name="GameCamera" type="Camera2D" parent="."]
-editor/display_folded = true
 current = true
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_enabled = true
 script = ExtResource( 9 )
 
