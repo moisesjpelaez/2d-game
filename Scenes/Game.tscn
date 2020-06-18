@@ -123,7 +123,7 @@ shape = SubResource( 2 )
 position = Vector2( 256, 144 )
 
 [node name="Sprite" parent="Player" index="0"]
-frame = 2
+frame = 3
 
 [node name="GameCamera" parent="Player" index="2"]
 limit_left = -1185

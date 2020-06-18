@@ -10,9 +10,11 @@ func _ready():
 	Global.restart_timer = $RestartTimer
 	Global.ui_health = $Control/Health
 	Global.heart_texture = Heart
-	randomize()
-	Global.game_music = get_node("GameMusic" + str(randi() % total_music + 1))
-	# Global.game_music = get_node("GameMusic" + str(debug_music))
+	
+	if Global.game_music != null:
+		randomize()
+		Global.game_music = get_node("GameMusic" + str(randi() % total_music + 1))
+		# Global.game_music = get_node("GameMusic" + str(debug_music))
 
 	$Control/Health.hide()
 	$Control/Label.text = "press the spacebar to start"
@@ -32,6 +34,9 @@ func _on_RestartTimer_timeout():
 	Global.show_restart()
 
 func change_music():
+	if Global.game_music == null:
+		return
+	
 	if !Global.game_is_over:
 		Global.game_music = get_node("GameMusic" + str(randi() % total_music + 1))
 		Global.game_music.play()

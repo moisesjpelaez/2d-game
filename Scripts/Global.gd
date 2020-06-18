@@ -23,8 +23,10 @@ func start_game():
 	game_label.hide()
 	ui_health.show()
 	emit_signal("start_game")
-	game_music.play()
-	game_music.get_node("AnimationPlayer").play("FadeIn")
+	
+	if game_music != null:
+		game_music.play()
+		game_music.get_node("AnimationPlayer").play("FadeIn")
 
 func game_over():
 	game_is_over = true
@@ -32,7 +34,9 @@ func game_over():
 	ui_health.hide()
 	game_label.text = game_over_text
 	restart_timer.start()
-	game_music.get_node("AnimationPlayer").play("FadeOut")
+	
+	if game_music != null:
+		game_music.get_node("AnimationPlayer").play("FadeOut")
 
 func show_restart():
 	game_label.text = restart_text
